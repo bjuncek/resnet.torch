@@ -28,6 +28,18 @@ local opt = opts.parse(arg)
 hasWorkbook, labWorkbook = pcall(require, 'lab-workbook')
 if hasWorkbook then
   workbook = labWorkbook:newExperiment{}
+  -- That will print an "Experiment Tag" to stdout.
+-- Be sure to write down that tag for later!
+
+-------- Save the parameters and current changes to the source code
+  workbook:saveGitStatus()
+  workbook:saveJSON("parameters",
+                  {
+                    learningRate = opt.LR,
+                    momentum     = opt.momentum,
+                    batchSize    = opt.batchSize,
+                    etc          = "Resnet experiment",
+                  })
   lossLog = workbook:newTimeSeriesLog("Training loss",
                                       {"nEpoch", "loss"},
                                       100)
