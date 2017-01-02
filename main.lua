@@ -22,6 +22,22 @@ torch.setdefaulttensortype('torch.FloatTensor')
 torch.setnumthreads(1)
 
 local opt = opts.parse(arg)
+
+-- Workbook logging
+-- Feel free to comment these out.
+hasWorkbook, labWorkbook = pcall(require, 'lab-workbook')
+if hasWorkbook then
+  workbook = labWorkbook:newExperiment{}
+  lossLog = workbook:newTimeSeriesLog("Training loss",
+                                      {"nEpoch", "loss"},
+                                      100)
+  errorLog = workbook:newTimeSeriesLog("Testing Error",
+                                       {"nEpoch", "error"})
+else
+  print "WARNING: No workbook support. No results will be saved."
+end
+
+
 torch.manualSeed(opt.manualSeed)
 cutorch.manualSeedAll(opt.manualSeed)
 
@@ -60,6 +76,12 @@ for epoch = startEpoch, opt.nEpochs do
 
    -- Run model on validation set
    local testTop1, testTop5, testLoss, testLossAbs = trainer:test(epoch, valLoader)
+
+   if hasWorkbook then
+      lossLog{nEpoch = epoch, loss = trainLoss}
+      errorLog{nEpochs = epoch or 0,
+                 error = 1.0 - testTop1}
+    end
 
    -- Update training stats
    table.insert(trainingStats.testError, testTop1)
