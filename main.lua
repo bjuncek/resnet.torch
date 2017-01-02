@@ -37,7 +37,8 @@ else
   print "WARNING: No workbook support. No results will be saved."
 end
 
-
+-- Set device options
+cutorch.setDevice(opt.GPU) -- by default, use GPU 1
 torch.manualSeed(opt.manualSeed)
 cutorch.manualSeedAll(opt.manualSeed)
 
