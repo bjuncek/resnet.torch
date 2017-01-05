@@ -48,8 +48,8 @@ for i=3,#arg do
 
     -- Init results
     local results = {};
-    for lab=1, #labels, 1 do
-        results[labels[lab-1]] = 0;
+    for lab=0, #labels, 1 do
+        table.insert(results, labels[lab]);
     end
 
     for width=0, w, math.floor(cropSize/3) do
