@@ -48,8 +48,8 @@ for i=3,#arg do
 
     -- Init results
     local results = {};
-    for lab=0, #labels, 1 do
-        print(labels)
+    for lab=1, #labels, 1 do
+        table.insert(results, labels[lab-1]);
     end
 
     local width=0;
