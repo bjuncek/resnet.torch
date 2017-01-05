@@ -52,8 +52,11 @@ for i=3,#arg do
         print(labels)
     end
 
-    for width=0, w, math.floor(cropSize/3) do
-        for height=0, h, math.floor(cropSize/3) do
+    local width=0;
+    local height=0;
+    while width + math.floor(cropSize/3) < w do
+        while height +math.floor(cropSize/3) < h do
+
             temp = image.crop(img, width, height, width+cropSize, height+cropSize);
             temp = temp:view(1, table.unpack(temp:size():totable()));
 
@@ -62,8 +65,9 @@ for i=3,#arg do
             local probs, predictions = output:topk(1, true, true)
             print(predictions)
             --results[labels[predictions[1]]] = results[labels[predictions[1]]] + 1;
-
+            height = height +math.floor(cropSize/3)[]
         end
+        width = width + math.floor(cropSize/3);
     end
 
     print(arg[i], results)
