@@ -48,8 +48,8 @@ for i=3,#arg do
 
     -- Init results
     local results = {};
-    for lab=0, #labels do
-        results[labels[lab]] = 0;
+    for lab=1, #labels, 1 do
+        results[labels[lab-1]] = 0;
     end
 
     for width=0, w, math.floor(cropSize/3) do
@@ -60,8 +60,8 @@ for i=3,#arg do
             -- Get the output of the softmax
             local output = model:forward(temp:cuda()):squeeze()
             local probs, predictions = output:topk(1, true, true)
-
-            results[labels[predictions[1]]] = results[labels[predictions[1]]] + 1;
+            print(predictions)
+            --results[labels[predictions[1]]] = results[labels[predictions[1]]] + 1;
 
         end
     end
