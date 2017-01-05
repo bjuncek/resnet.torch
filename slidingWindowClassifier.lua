@@ -49,7 +49,7 @@ for i=3,#arg do
     -- Init results
     local results = {};
     for lab=0, #labels, 1 do
-        table.insert(results, labels[lab]);
+        print(labels)
     end
 
     for width=0, w, math.floor(cropSize/3) do
