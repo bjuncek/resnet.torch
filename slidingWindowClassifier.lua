@@ -65,7 +65,7 @@ for i=3,#arg do
             local probs, predictions = output:topk(1, true, true)
             print(predictions)
             --results[labels[predictions[1]]] = results[labels[predictions[1]]] + 1;
-            height = height +math.floor(cropSize/3)[]
+            height = height +math.floor(cropSize/3);
         end
         width = width + math.floor(cropSize/3);
     end
