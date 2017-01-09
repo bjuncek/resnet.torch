@@ -121,7 +121,7 @@ function ImagenetDataset:preprocess()
    if self.split == 'train' then
       return t.Compose{
          t.Scale(256),
-         t.RandomSizedCrop(224),
+         t.CenterCrop(224),
         t.ColorJitter({
           brightness = 0.1,
           contrast = 0.1,
