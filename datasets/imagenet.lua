@@ -92,7 +92,7 @@ end
 
 function ImagenetDataset:_loadImage(path)
    local ok, input = pcall(function()
-      return image.load(path, 3, 'float')
+      return image.scale(image.load(path, 3, 'float'), 1024)
    end)
 
    -- Sometimes image.load fails because the file extension does not match the
