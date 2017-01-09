@@ -1,10 +1,9 @@
 th main.lua \
--batchSize 94 \
 -nGPU 1 \
 -nThreads 5 \
 -batchSize 16 \
 -depth 152 \
--data /data/CP/Data/clean/Crops \
+-data /data/CP/Data/clean/Crops/ \
 -nClasses 6 \
 -nEpochs 200 \
 -resetClassifier true \
