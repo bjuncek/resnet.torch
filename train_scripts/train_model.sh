@@ -1,6 +1,5 @@
 th main.lua \
--nGPU 1 \
--nThreads 5 \
+-nGPU 4 \
 -batchSize 16 \
 -depth 152 \
 -data /data/CP/Data/clean/Crops/ \
@@ -8,6 +7,6 @@ th main.lua \
 -nEpochs 200 \
 -resetClassifier true \
 -LR 0.01 \
--LR_decay_step 30 \
+-LR_decay_step 50 \
 -save /data/bruno/final \
 -compute_mean_std true \
